@@ -1,7 +1,7 @@
 const mongo = require("mongoose");
 
 mongo.connect(
-  "",
+  "mongodb+srv://atharva:codershots@cluster-utfcg.mongodb.net/ecommerce?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) {
