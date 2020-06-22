@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert } from "../actions/alert";
 import { login } from "../actions/auth";
-import axios from "axios";
 
 const Login = (props) => {
   const [formData, setFormData] = useState({
