@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
+const auth = require("../../middlewares/auth");
 
 router.post("/login", async (req, res) => {
   try {
@@ -57,6 +58,22 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(501).json({ msg: "The server encountered an error" });
+  }
+});
+
+router.get("/auth", auth, async (req, res) => {
+  try {
+    const result = await User.findOne({ token: req.user.token });
+    res.json({
+      name: result.name,
+      email: result.email,
+      mobile: result.mobile,
+      token: result.token,
+      cart: result.cart,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(501).json({ msg: "Internal Server Error" });
   }
 });
 
